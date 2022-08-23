@@ -55,7 +55,6 @@ namespace PickList
 
     /**
      * 选择列表
-     * 对LoopList封装，提供通用选择功能
      * PickItem: 选择项,需要自己实现内部功能
      * PickData: 选择数据，需要自己实现内部数据
      * 调用Init进行初始化，根节点指向ScrollRect
