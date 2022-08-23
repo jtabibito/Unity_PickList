@@ -299,6 +299,8 @@ namespace PickList
         /// </summary>
         public PickData GetPickData(int index)
         {
+            if (index < 0 || index >= _m_listPickItemDs.Count)
+                return null;
             return _m_listPickItemDs[index];
         }
         /// <summary>
