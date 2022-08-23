@@ -514,9 +514,9 @@ namespace LoopList
                     listP.y = pos;
                     m_ContentRectTrans.anchoredPosition = listP;
                 }
-                else if (-pos + listP.y < -m_rtRoot.rect.height)
+                else if (-pos + listP.y - (m_CellObjectHeight + m_v2Spacing.y) < -m_rtRoot.rect.height)
                 {
-                    listP.y = pos;
+                    listP.y = pos + m_CellObjectHeight + m_v2Spacing.y - m_rtRoot.rect.height;
                     m_ContentRectTrans.anchoredPosition = listP;
                 }
             }
@@ -528,9 +528,9 @@ namespace LoopList
                     listP.x = pos;
                     m_ContentRectTrans.anchoredPosition = listP;
                 }
-                else if (pos + listP.x > m_rtRoot.rect.width)
+                else if (pos + listP.x + m_CellObjectWidth + m_v2Spacing.x > m_rtRoot.rect.width)
                 {
-                    listP.x = pos;
+                    listP.x = pos + 2*listP.x + m_CellObjectWidth + m_v2Spacing.x - m_rtRoot.rect.width;
                     m_ContentRectTrans.anchoredPosition = listP;
                 }
             }
