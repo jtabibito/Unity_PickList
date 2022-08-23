@@ -233,9 +233,9 @@ namespace PickList
         /// <param name="argv">Argv:提供可选参数:Sort:bool,Refresh:bool,KeepPick:bool</param>
         public void SetDataSet(List<PickData> listPickItems, Dictionary<string, object> argv = null)
         {
-            _m_listPickItemDs = listPickItems;
-            if (_m_listPickItemDs.Count == 0)
+            if (listPickItems == null)
                 return;
+            _m_listPickItemDs = listPickItems;
             bool bKeepPick = false;
             if (argv != null)
             {
