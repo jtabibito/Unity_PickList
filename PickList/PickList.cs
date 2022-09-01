@@ -533,6 +533,17 @@ namespace PickList
                             }
                         }
                     }
+                    else
+                    {
+                        // 如果不支持单选取消, 则执行重复选中逻辑
+                        if (_m_pfnOnPick != null)
+                        {
+                            result = _m_pfnOnPick(pData, true);
+                        }
+
+                        _m_iCurPicked = pData.Index;
+                        Pick(pData);
+                    }
                 }
                 else
                 {
