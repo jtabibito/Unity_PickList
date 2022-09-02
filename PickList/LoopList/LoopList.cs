@@ -399,14 +399,14 @@ namespace LoopList
             //-> 计算 Content 尺寸
             if (m_IsVertical)
             {
-                float contentSize = (m_v2Spacing.y + m_CellObjectHeight) * Mathf.CeilToInt((float)num / m_Row);
+                float contentSize = (m_v2Spacing.y + m_CellObjectHeight) * Mathf.CeilToInt((float)num / m_Row) * Mathf.CeilToInt((float)num / m_Row) + (m_pPadding.top + m_pPadding.bottom - m_v2Spacing.y);
                 m_ContentHeight = contentSize;
                 m_ContentWidth = m_ContentRectTrans.sizeDelta.x;
                 m_ContentRectTrans.sizeDelta = new Vector2(m_ContentWidth, m_ContentHeight);
             }
             else
             {
-                float contentSize = (m_v2Spacing.x + m_CellObjectWidth) * Mathf.CeilToInt((float)num / m_Row);
+                float contentSize = (m_v2Spacing.x + m_CellObjectWidth) * Mathf.CeilToInt((float)num / m_Row) * Mathf.CeilToInt((float)num / m_Row) + (m_pPadding.left + m_pPadding.right - m_v2Spacing.x);
                 m_ContentWidth = contentSize;
                 m_ContentHeight = m_ContentRectTrans.sizeDelta.y;
                 m_ContentRectTrans.sizeDelta = new Vector2(m_ContentWidth, m_ContentHeight);
@@ -552,14 +552,14 @@ namespace LoopList
             //-> 计算 Content 尺寸
             if (m_IsVertical)
             {
-                float contentSize = (m_v2Spacing.y + m_CellObjectHeight) * Mathf.CeilToInt((float)num / m_Row);
+                float contentSize = (m_v2Spacing.y + m_CellObjectHeight) * Mathf.CeilToInt((float)num / m_Row) * Mathf.CeilToInt((float)num / m_Row) + (m_pPadding.top + m_pPadding.bottom - m_v2Spacing.y);
                 m_ContentHeight = contentSize;
                 m_ContentWidth = m_ContentRectTrans.sizeDelta.x;
                 m_ContentRectTrans.sizeDelta = new Vector2(m_ContentWidth, contentSize);
             }
             else
             {
-                float contentSize = (m_v2Spacing.x + m_CellObjectWidth) * Mathf.CeilToInt((float)num / m_Row);
+                float contentSize = (m_v2Spacing.x + m_CellObjectWidth) * Mathf.CeilToInt((float)num / m_Row) * Mathf.CeilToInt((float)num / m_Row) + (m_pPadding.left + m_pPadding.right - m_v2Spacing.x);
                 m_ContentWidth = contentSize;
                 m_ContentHeight = m_ContentRectTrans.sizeDelta.x;
                 m_ContentRectTrans.sizeDelta = new Vector2(contentSize, m_ContentHeight);
