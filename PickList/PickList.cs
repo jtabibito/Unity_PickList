@@ -303,6 +303,13 @@ namespace PickList
                 return null;
             return _m_listPickItemDs[index];
         }
+        ///<summary>
+        /// 获取指定PickData
+        ///</summary>
+        public PickData FindPickData(Predicate<PickData> pfnPredict)
+        {
+            return _m_listPickItemDs.Find(pfnPredict);
+        }
         /// <summary>
         /// 获取已选列表
         /// </summary>
