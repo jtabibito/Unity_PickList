@@ -63,8 +63,9 @@ namespace PickList
     {
         public RectTransform m_rtRoot;
 
-        protected bool _m_bSingleUnPickable;
+        protected bool _m_bSingleUnPickable; // 禁止单选取消
         protected bool _m_bMultiPickable; // 支持多选
+        protected bool _m_bMultiUnPickable; // 禁止多选取消
         protected bool _m_bDisablePick; // 禁止选择
 
         protected Comparison<PickData> _m_pComparison;
@@ -130,6 +131,7 @@ namespace PickList
         {
             _m_bSingleUnPickable = true;
             _m_bMultiPickable = false;
+            _m_bMultiUnPickable = true;
             _m_bDisablePick = false;
 
             _m_iCurPicked = -1;
@@ -196,7 +198,8 @@ namespace PickList
         /// 设置选择属性
         /// </summary>
         /// <param name="SingleUnPickable">SingleUnPickable:bool,是否支持单选取消</param>
-        /// <param name="MultiPickable">SingleUnPickable:bool,是否支持多选</param>
+        /// <param name="MultiPickable">MultiPickable:bool,是否支持多选</param>
+        /// <param name="MultiUnPickable">MultiUnPickable:bool,是否支持多选取消</param>
         public void SetPickProperty(Dictionary<string, object> argv = null)
         {
             if (argv != null)
@@ -209,6 +212,10 @@ namespace PickList
                 if (argv.TryGetValue("MultiPickable", out value))
                 {
                     _m_bMultiPickable = (bool)value;
+                }
+                if (argv.TryGetValue("MultiUnPickable", out value))
+                {
+                    _m_bMultiUnPickable = (bool)value;
                 }
             }
         }
@@ -487,23 +494,26 @@ namespace PickList
             bool result = true;
             if (_m_bMultiPickable)
             {
-                if (_m_dictPickItems.ContainsKey(pData.Index))
+                if (_m_bMultiUnPickable)
                 {
-                    if (_m_pfnOnUnPick != null)
+                    if (_m_dictPickItems.ContainsKey(pData.Index))
                     {
-                        result = _m_pfnOnUnPick(pData, true);
-                    }
-                    
-                    if (result)
-                    {
-                        UnPick(pData);
-
-                        if (_m_iCurPicked == pData.Index)
+                        if (_m_pfnOnUnPick != null)
                         {
-                            _m_iCurPicked = -1;
+                            result = _m_pfnOnUnPick(pData, true);
                         }
+                        
+                        if (result)
+                        {
+                            UnPick(pData);
+
+                            if (_m_iCurPicked == pData.Index)
+                            {
+                                _m_iCurPicked = -1;
+                            }
+                        }
+                        return;
                     }
-                    return;
                 }
 
                 result = true;
